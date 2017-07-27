@@ -3894,7 +3894,9 @@ body {font-family: Verdana, sans-serif;}
 .MyClass {
 	background-color:green;
 }
-
+.inactive {
+	background-color:red;
+}
 button {
 	outline:none;
 	border:none;

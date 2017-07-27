@@ -79,7 +79,7 @@
                     <li> </li>
                     <li> </li>
                     <li><span><button onclick="highlight(this.id)" id="1">1</button></span></li>
-                    <li><span><button onclick="highlight(this.id)" id="2">2</button></span></li>
+                    <li><span><button class="inactive" id="2">2</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="3">3</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="4">4</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="5">5</button></span></li>
@@ -95,8 +95,8 @@
                     <li><span><button onclick="highlight(this.id)" id="15">15</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="16">16</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="17">17</button></span></li>
-                    <li><span><button onclick="highlight(this.id)" id="18">18</button></span></li>
-                    <li><span><button onclick="highlight(this.id)" id="19">19</button></span></li>
+                    <li><span><button class="inactive" id="2">18</button></span></li>
+                    <li><span><button class="inactive" id="2">19</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="20">20</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="21">21</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="22">22</button></span></li>
@@ -110,8 +110,12 @@
                     <li><span><button onclick="highlight(this.id)" id="30">30</button></span></li>
                     <li><span><button onclick="highlight(this.id)" id="31">31</button></span></li>
                   </ul>
+									<p><b>Price: $25/day</b><br>
+										<p><b>Cost: $0</b><br>
+										<b style="color: red;">Red</b>: Unavailve during this day<br>
+										<b style="color: green;">Green</b>: Days selected to buy space<br>
+										Status: <b style="color: green;">Available</b></p>
                 </div>
-                <p><b>Price: $1250/semester</b><br>
                   Distance: About 18 minute walk<br>
                   Special Restrictions: N/A<br>
                   Special Features: Easy in and out parking<br>
@@ -183,7 +187,7 @@
         function highlight(id) {
           var x = document.getElementById(id);
           x.classList.toggle("MyClass");
-        }
+      	}
       </script>
 	</body>
 </html>
