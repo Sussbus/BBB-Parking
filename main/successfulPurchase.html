@@ -29,6 +29,7 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.html">Home</a></li>
+											<li><a href="map.html">Map</a></li>
 											<li><a href="semester-parking.html">Semester Parking</a></li>
 											<li><a href="flash-pass.html">Flash Pass</a></li>
 											<li><a href="sell.html">Sell a Spot</a></li>
