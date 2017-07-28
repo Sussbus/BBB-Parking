@@ -72,6 +72,13 @@
               google.maps.event.addListener(newTrierMarker, 'click', function () {
                 window.location = newTrierMarker.url;
               });
+              var houseOne = {lat: 42.094000, lng: -87.718974}
+              var houseOneMarker = new google.maps.Marker({
+                  position: houseOne,
+                  map: map,
+                  title: 'Hello World!',
+                  animation: google.maps.Animation.DROP,
+              });
               }
               </script>
 
