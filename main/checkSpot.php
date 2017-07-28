@@ -54,6 +54,7 @@
 							<a href="map.html"><button style="font-size: 12px; padding-left: 10px; padding-right: 10px; margin-left: 30px;">Back to Map</button></a>
 							<div class="inner" style="width: 60%">
 										<?php
+										//Variables being read from the URL
 										$spoturl = $_GET['spoturl'];
 										$price = $_GET['price'];
 										$distance = $_GET['distance'];
@@ -61,11 +62,13 @@
 										$features = $_GET['features'];
 										$status = $_GET['status'];
 										$statusColor = $_GET['statusColor'];
+										//The map of the route being rendered
 										echo '
 										<iframe src="'.$spoturl.'"
 											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
 										</iframe>
 										';
+										//Description of the spot being rendered
 										echo '<h4>$'.$price.' per semester</h4>';
 										echo '<p>Distance: '.$distance.'<br>';
 										echo 'Special Restrictions: '.$restrictions.'<br>';
