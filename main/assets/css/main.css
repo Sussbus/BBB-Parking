@@ -3892,10 +3892,10 @@ body {font-family: Verdana, sans-serif;}
 }
 
 .MyClass {
-	background-color:green;
+	background-color:#60ff7b;
 }
 .inactive {
-	background-color:red;
+	background-color:#fc4444;
 }
 button {
 	outline:none;
