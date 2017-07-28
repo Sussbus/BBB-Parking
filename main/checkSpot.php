@@ -47,34 +47,34 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>How it Works</h2>
+							<h2>Spot</h2>
 							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
 						</header>
 						<section class="wrapper style5">
+							<a href="map.html"><button style="font-size: 12px; padding-left: 10px; padding-right: 10px; margin-left: 30px;">Back to Map</button></a>
 							<div class="inner" style="width: 60%">
-								<h2>Buying Form:</h2><br>
-								<form method="POST" action="buySpot.php">
-									<input type="text" placeholder="Full Name" style="width: 60%;" id="name" name="name"/><br>
-									<input type="text" placeholder="Email" style="width: 60%;" id="email" name="email"/><br>
-									<input type="text" placeholder="Address" style="width: 60%;" id="address" name="address"/><br>
-									<input type="text" placeholder="Phone Number" style="width: 30%;" id="phonenumber" name="phonenumber"/><br>
-									<!--
-									<input type="text" placeholder="Address Line 1" style="width: 50%;"/><br>
-									<input type="text" placeholder="Address Line 2" style="width: 50%;"/><br>-->
-									<!--<textarea type="field" placeholder="Comments" style="width: 60%; height: 20%;"></textarea><br>-->
-									<h2>Your Spot:</h2>
 										<?php
 										$spoturl = $_GET['spoturl'];
 										$price = $_GET['price'];
-										echo '<h4>$'.$price.' per semester</h4>';
+										$distance = $_GET['distance'];
+										$restrictions = $_GET['restrictions'];
+										$features = $_GET['features'];
+										$status = $_GET['status'];
+										$statusColor = $_GET['statusColor'];
 										echo '
 										<iframe src="'.$spoturl.'"
 											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
 										</iframe>
 										';
+										echo '<h4>$'.$price.' per semester</h4>';
+										echo '<p>Distance: '.$distance.'<br>';
+										echo 'Special Restrictions: '.$restrictions.'<br>';
+										echo 'Special Features: '.$features.'<br>';
+										echo 'Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>';
+										echo '
+										<br>
+										<a href="buy.php?spoturl='.$spoturl.'&price='.$price.'"><input type="submit" value="Contact Seller" style="font-size: 12px; padding-left: 11px; padding-right: 11px;" />';
 										?>
-										<br><br>
-									<input type="submit" value="Contact Seller" style="font-size: 12px; padding-left: 11px; padding-right: 11px;" />
 								</form>
 
 							</div>
