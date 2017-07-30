@@ -53,7 +53,11 @@
 						<section class="wrapper style5">
 							<div class="inner" style="width: 60%">
 								<h2>Buying Form:</h2><br>
-								<form method="POST" action="buySpot.php">
+								<?php
+								$spoturl = $_GET['spoturl'];
+								$price = $_GET['price'];
+								echo '<form method="POST" action="buySpot.php?spoturl='.$spoturl.'&price='.$price.'">';
+								?>
 									<input type="text" placeholder="Full Name" style="width: 60%;" id="name" name="name"/><br>
 									<input type="text" placeholder="Email" style="width: 60%;" id="email" name="email"/><br>
 									<input type="text" placeholder="Address" style="width: 60%;" id="address" name="address"/><br>
