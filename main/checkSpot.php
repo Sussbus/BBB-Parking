@@ -50,9 +50,9 @@
 							<h2>Spot</h2>
 							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
 						</header>
-						<section class="wrapper style5">
-							<a href="map.html"><button style="font-size: 12px; padding-left: 10px; padding-right: 10px; margin-left: 30px;">Back to Map</button></a>
-							<div class="inner" style="width: 60%">
+						<section class="wrapper style5" style="padding-top: 30px;">
+							<a href="map.html"><button style="font-size: 12px; padding-left: 10px; padding-right: 10px; margin-left: 30px; margin-bottom: 30px;">Back to Map</button></a>
+							<div class="inner" style="width: 55%">
 										<?php
 										//Variables being read from the URL
 										$spoturl = $_GET['spoturl'];

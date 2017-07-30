@@ -46,66 +46,83 @@
 
 				<!-- Main -->
 					<article id="main">
+						<!--
 						<header>
 							<h2>Map</h2>
 							<h5>find a spot</h5>
 						</header>
+					-->
             <!-- MAIN CONTENT SECTION -->
-						<section class="wrapper style5">
-							<center><h4>Search for a spot and click on it to check it out</h4></center>
-              <div id="googleMap" style="width:100%;height:500px;"></div>
-
+						<section class="wrapper style5" style="padding-top: 0px;">
+							<div style="height: 55px;">
+								<center><p style="font-family: Avenir; font-size: 23px; padding-top: 15px;">Search for a spot and click on it to check it out</p></center>
+							</div>
+							<div id="googleMap" style="width:100%;height:500px;"></div>
               <script>
               function myMap() {
-              var newTrier = {lat: 42.094575, lng: -87.718974};
-              var mapProp= {
-                  center: newTrier,
-                  zoom:16,
-              };
-							//New Trier Marker
-              var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-              var newTrierMarker = new google.maps.Marker({
-                  position: newTrier,
-                  map: map,
-                  animation: google.maps.Animation.DROP,
-                  url: 'http://newtrier.k12.il.us',
-              });
-              google.maps.event.addListener(newTrierMarker, 'click', function () {
-                window.location = newTrierMarker.url;
-              });
-							//House 1 Marker
-              var houseOne = {lat: 42.097000, lng: -87.718974}
-              var houseOneMarker = new google.maps.Marker({
-                  position: houseOne,
-                  map: map,
-                  animation: google.maps.Animation.DROP,
-									url: 'checkSpot.php?spoturl=https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7572.108106674997!2d-87.74512909865025!3d42.103163266889545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc4f8cdafb133%3A0xe278cf86619fc9ae!2sChestnut+St%2C+Winnetka%2C+IL+60093!3m2!1d42.1009852!2d-87.7352622!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494368773063&price=1250&distance=About%2018%20minute%20walk&restrictions=N%2FA&features=Easy%20in%20and%20out%20parking&status=Available&statusColor=green',
-              });
-							google.maps.event.addListener(houseOneMarker, 'click', function () {
-								window.location = houseOneMarker.url;
-							});
-							//House 2 Marker (NOT WORKING)
-              var houseTwo = {lat: 42.094000, lng: -87.716000}
-              var houseTwoMarker = new google.maps.Marker({
-                  position: houseTwo,
-                  map: map,
-                  animation: google.maps.Animation.DROP,
-									url: 'checkSpot.php?spoturl=https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d2960.072049847086!2d-87.74598503513526!3d42.10592770910596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc459e0380681%3A0x493d7fd327d0cb19!2s972+Elm+Street%2C+Winnetka%2C+IL!3m2!1d42.1056399!2d-87.74079069999999!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494369059898&price=1800&distance=About%2018%20minute%20walk&restrictions=N%2FA&features=Easy%20in%20and%20out%20parking&status=Available&statusColor=green',
-              });
-							google.maps.event.addListener(houseTwoMarker, 'click', function () {
-								window.location = houseTwoMarker.url;
-							});
-							//House 3 Marker
-              var houseThree = {lat: 42.094000, lng: -87.722000}
-              var houseTwoMarker = new google.maps.Marker({
-                  position: houseThree,
-                  map: map,
-                  animation: google.maps.Animation.DROP,
-									url: 'checkSpot.php?spoturl=https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d2960.072049847086!2d-87.74598503513526!3d42.10592770910596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc459e0380681%3A0x493d7fd327d0cb19!2s972+Elm+Street%2C+Winnetka%2C+IL!3m2!1d42.1056399!2d-87.74079069999999!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494369059898&price=1800&distance=About%20a%206%20min%20walk&restrictions=N%2FA&features=Easy%20in%20and%20out%20parking&status=Currently%20Taken&statusColor=red',
-              });
-							google.maps.event.addListener(houseThreeMarker, 'click', function () {
-								window.location = houseThreeMarker.url;
-							});
+	              var newTrier = {lat: 42.094575, lng: -87.718974};
+	              var mapProp= {
+	                  center: newTrier,
+	                  zoom:16,
+	              };
+								//New Trier Marker
+	              var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	              var newTrierMarker = new google.maps.Marker({
+	                  position: newTrier,
+	                  map: map,
+	                  animation: google.maps.Animation.DROP,
+	                  url: 'http://newtrier.k12.il.us',
+	              });
+	              google.maps.event.addListener(newTrierMarker, 'click', function () {
+	                window.location = newTrierMarker.url;
+	              });
+
+								//House 1 Marker
+	              var houseOne = {lat: 42.097000, lng: -87.718974}
+	              var houseOneMarker = new google.maps.Marker({
+	                  position: houseOne,
+	                  map: map,
+	                  animation: google.maps.Animation.DROP,
+										url: 'checkSpot.php?spoturl=https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7572.108106674997!2d-87.74512909865025!3d42.103163266889545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc4f8cdafb133%3A0xe278cf86619fc9ae!2sChestnut+St%2C+Winnetka%2C+IL+60093!3m2!1d42.1009852!2d-87.7352622!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494368773063&price=1250&distance=About%2018%20minute%20walk&restrictions=N%2FA&features=Easy%20in%20and%20out%20parking&status=Available&statusColor=green',
+	              });
+								google.maps.event.addListener(houseOneMarker, 'click', function () {
+									window.location = houseOneMarker.url;
+								});
+
+								//House 2 Marker
+	              var houseTwo = {lat: 42.094000, lng: -87.716000}
+	              var houseTwoMarker = new google.maps.Marker({
+	                  position: houseTwo,
+	                  map: map,
+	                  animation: google.maps.Animation.DROP,
+										url: 'checkSpot.php?spoturl=https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d2960.072049847086!2d-87.74598503513526!3d42.10592770910596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc459e0380681%3A0x493d7fd327d0cb19!2s972+Elm+Street%2C+Winnetka%2C+IL!3m2!1d42.1056399!2d-87.74079069999999!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494369059898&price=1800&distance=About%2018%20minute%20walk&restrictions=N%2FA&features=Easy%20in%20and%20out%20parking&status=Available&statusColor=green',
+	              });
+								google.maps.event.addListener(houseTwoMarker, 'click', function () {
+									window.location = houseTwoMarker.url;
+								});
+								//House 3 Marker
+								var houseThree = {lat: 42.097000, lng: -87.725000}
+								var houseThreeMarker = new google.maps.Marker({
+										position: houseThree,
+										map: map,
+										animation: google.maps.Animation.DROP,
+										url: 'checkSpot.php?spoturl=https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7572.108106674997!2d-87.74512909865025!3d42.103163266889545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc4f8cdafb133%3A0xe278cf86619fc9ae!2sChestnut+St%2C+Winnetka%2C+IL+60093!3m2!1d42.1009852!2d-87.7352622!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494368773063&price=1250&distance=About%2018%20minute%20walk&restrictions=N%2FA&features=Easy%20in%20and%20out%20parking&status=Available&statusColor=green',
+								});
+								google.maps.event.addListener(houseThreeMarker, 'click', function () {
+									window.location = houseThreeMarker.url;
+								});
+
+								//House 4 Marker
+								var houseFour = {lat: 42.091000, lng: -87.724000}
+								var houseFourMarker = new google.maps.Marker({
+										position: houseFour,
+										map: map,
+										animation: google.maps.Animation.DROP,
+										url: 'checkSpot.php?spoturl=https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7572.108106674997!2d-87.74512909865025!3d42.103163266889545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc4f8cdafb133%3A0xe278cf86619fc9ae!2sChestnut+St%2C+Winnetka%2C+IL+60093!3m2!1d42.1009852!2d-87.7352622!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494368773063&price=1250&distance=About%2018%20minute%20walk&restrictions=N%2FA&features=Easy%20in%20and%20out%20parking&status=Available&statusColor=green',
+								});
+								google.maps.event.addListener(houseFourMarker, 'click', function () {
+									window.location = houseFourMarker.url;
+								});
               }
               </script>
 
