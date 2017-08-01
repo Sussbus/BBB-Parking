@@ -116,7 +116,7 @@
 									$dailyPrice = $_GET['dailyPrice'];
 									echo '<p><b>Price: $'.$dailyPrice.'/day</b><br>';
 									?>
-										<b>Cost: $0</b><br>
+										<b>Cost: $<b id="currentCost">0</b></b><br>
 										<b style="color: red;">Red</b>: Unavailable during this day<br>
 										<b style="color: green;">Green</b>: Days selected to buy space<br>
                 </div>
@@ -168,6 +168,16 @@
         function highlight(id) {
           var x = document.getElementById(id);
           x.classList.toggle("MyClass");
+
+					//Current Cost Stuff
+					var perDayCost = 30;
+					var currentCost = parseInt(document.getElementById("currentCost").textContent);
+					if (document.getElementById(id).classList == 'flashPassButton MyClass') {
+						document.getElementById("currentCost").innerHTML = currentCost + perDayCost;
+					}
+					if (document.getElementById(id).classList == 'flashPassButton') {
+						document.getElementById("currentCost").innerHTML = currentCost - perDayCost;
+					}
       	}
       </script>
 	</body>
