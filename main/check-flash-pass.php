@@ -170,7 +170,7 @@
           x.classList.toggle("MyClass");
 
 					//Current Cost Stuff
-					var perDayCost = 30;
+					var perDayCost = parseInt("<?php $perDayCost = $_GET['perDayCost']; echo $perDayCost ?>");
 					var currentCost = parseInt(document.getElementById("currentCost").textContent);
 					if (document.getElementById(id).classList == 'flashPassButton MyClass') {
 						document.getElementById("currentCost").innerHTML = currentCost + perDayCost;
