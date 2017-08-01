@@ -52,6 +52,30 @@
 							<h5>find a spot</h5>
 						</header>
 					-->
+
+						<style>
+						/* Removes the x From The infoWindow */
+						.scrollFix {
+							line-height:1.35;
+							overflow:hidden;
+							white-space:nowrap;
+							width:73px;
+							z-index:99999999999;
+							height:15px;
+							text-align: center;
+							font-family: Avenir;
+							font-size: 14px;
+							padding-left: 5px;
+						}
+						/*.gm-style-iw + div{ display: none; }
+						.gm-style-iw + div + img{ display: none; }
+						*/
+						#map-canvas div{
+						line-height:1.35;
+						overflow:hidden;
+						white-space:nowrap;
+						}
+						</style>
             <!-- MAIN CONTENT SECTION -->
 						<section class="wrapper style5" style="padding-top: 0px;">
 							<div style="height: 55px;">
@@ -65,6 +89,7 @@
 	                  center: newTrier,
 	                  zoom:16,
 	              };
+
 								//New Trier Marker
 	              var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 	              var newTrierMarker = new google.maps.Marker({
@@ -73,6 +98,18 @@
 	                  animation: google.maps.Animation.DROP,
 	                  url: 'http://newtrier.k12.il.us',
 	              });
+								//New Trier Hover
+								var hoverContent = '<div class="scrollFix">New Trier</div>';
+								var newTrierInfowindow = new google.maps.InfoWindow({
+									content: hoverContent,
+									maxHeight: 10,
+								});
+								newTrierMarker.addListener('mouseover', function() {
+								    newTrierInfowindow.open(map, this);
+								});
+								newTrierMarker.addListener('mouseout', function() {
+								    newTrierInfowindow.close();
+								});
 	              google.maps.event.addListener(newTrierMarker, 'click', function () {
 	                window.location = newTrierMarker.url;
 	              });
@@ -81,10 +118,13 @@
 									$query = mysqli_query($conn, "SELECT * FROM spots");
 										while($row = mysqli_fetch_array($query)) {
 										$spotID = $row['id'];
+										$price = $row['price'];
 										$latitude = $row['latitude'];
 										$longitude = $row['longitude'];
 										$houseNumber = 'house'.$spotID;
 										$houseNumberMarker = $houseNumber.'Marker';
+										$houseNumberHover = $houseNumber.'hoverContent';
+										$houseNumberInfoWindow = $houseNumber.'infoWindow';
 										echo "
 										var ".$houseNumber." = {lat: ".$latitude.", lng: ".$longitude."}
 			              var ".$houseNumberMarker." = new google.maps.Marker({
@@ -95,6 +135,17 @@
 			              });
 										google.maps.event.addListener(".$houseNumberMarker.", 'click', function () {
 											window.location = ".$houseNumberMarker.".url;
+										});
+										var ".$houseNumberHover." = '<div class=\"scrollFix\" style=\"width: 78px;\">$".$price."/sem</div>';
+										var ".$houseNumberInfoWindow." = new google.maps.InfoWindow({
+											content: ".$houseNumberHover.",
+											maxHeight: 10,
+										});
+										".$houseNumberMarker.".addListener('mouseover', function() {
+										    ".$houseNumberInfoWindow.".open(map, this);
+										});
+										".$houseNumberMarker.".addListener('mouseout', function() {
+										    ".$houseNumberInfoWindow.".close();
 										});
 										";
 									}
