@@ -95,7 +95,7 @@
 							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
 						<ul class="copyright">
-							<li>&copy; Swift Park 2017.  All rights reserved<br><br>Created by <a href="http://bitbybite.co" style="color: white;">BitByBite Inc.</a></li>
+							<li>&copy; Swift Park 2017.  All rights reserved.<br><br>Created by <a href="http://bitbybite.co" style="color: white;">BitByBite Inc.</a></li>
 						</ul>
 					</footer>
 

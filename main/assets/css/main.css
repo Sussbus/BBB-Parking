@@ -3892,12 +3892,29 @@ body {font-family: Verdana, sans-serif;}
 }
 
 .MyClass {
-	background-color:#60ff7b;
+	background-color:#16e264;
 }
 .inactive {
+	background-color:#fc4444;
+	text-align: center;
+	vertical-align: middle;
+	margin: auto;
+	color: white;
+}
+button.inactive:hover{
 	background-color:#fc4444;
 }
 button {
 	outline:none;
 	border:none;
+}
+.flashPassButton {
+	width: 60px;
+	height: 35px;
+	text-align: center;
+	vertical-align: middle;
+	margin: auto;
+	font-family: 'Lato', sans-serif;
+	padding: inherit;
+	font-size: 12px;
 }
