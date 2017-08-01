@@ -29,9 +29,9 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.html">Home</a></li>
-											<li><a href="map.html">Spot Map</a></li>
+											<li><a href="map.php">Spot Map</a></li>
 											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
-											<li><a href="flash-pass.html">Flash Pass (Beta)</a></li>
+											<li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
 											<li><a href="sell.html">Sell a Spot</a></li>
 											<li><a href="how-it-works.html">How it works</a></li>
 											<li><a href="privacy-and-disclaimer.html">Privacy and Disclaimer</a></li>
@@ -76,19 +76,30 @@
 	              google.maps.event.addListener(newTrierMarker, 'click', function () {
 	                window.location = newTrierMarker.url;
 	              });
-
-								//House 1 Marker
-	              var houseOne = {lat: 42.097000, lng: -87.718974}
-	              var houseOneMarker = new google.maps.Marker({
-	                  position: houseOne,
-	                  map: map,
-	                  animation: google.maps.Animation.DROP,
-										url: 'checkSpot.php?spoturl=https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7572.108106674997!2d-87.74512909865025!3d42.103163266889545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc4f8cdafb133%3A0xe278cf86619fc9ae!2sChestnut+St%2C+Winnetka%2C+IL+60093!3m2!1d42.1009852!2d-87.7352622!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494368773063&price=1250&distance=About%2018%20minute%20walk&restrictions=N%2FA&features=Easy%20in%20and%20out%20parking&status=Available&statusColor=green',
-	              });
-								google.maps.event.addListener(houseOneMarker, 'click', function () {
-									window.location = houseOneMarker.url;
-								});
-
+									<?php
+									require('connect.php');
+									$query = mysqli_query($conn, "SELECT * FROM spots");
+										while($row = mysqli_fetch_array($query)) {
+										$spotID = $row['id'];
+										$latitude = $row['latitude'];
+										$longitude = $row['longitude'];
+										$houseNumber = 'house'.$spotID;
+										$houseNumberMarker = $houseNumber.'Marker';
+										echo "
+										var ".$houseNumber." = {lat: ".$latitude.", lng: ".$longitude."}
+			              var ".$houseNumberMarker." = new google.maps.Marker({
+			                  position: ".$houseNumber.",
+			                  map: map,
+			                  animation: google.maps.Animation.DROP,
+												url: 'checkSpot.php?spotID=".$spotID."',
+			              });
+										google.maps.event.addListener(".$houseNumberMarker.", 'click', function () {
+											window.location = ".$houseNumberMarker.".url;
+										});
+										";
+									}
+									?>
+									/*
 								//House 2 Marker
 	              var houseTwo = {lat: 42.094000, lng: -87.716000}
 	              var houseTwoMarker = new google.maps.Marker({
@@ -123,6 +134,7 @@
 								google.maps.event.addListener(houseFourMarker, 'click', function () {
 									window.location = houseFourMarker.url;
 								});
+								*/
               }
               </script>
 

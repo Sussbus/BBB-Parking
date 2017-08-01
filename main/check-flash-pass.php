@@ -29,9 +29,9 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.html">Home</a></li>
-											<li><a href="map.html">Spot Map</a></li>
+											<li><a href="map.php">Spot Map</a></li>
 											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
-                      <li><a href="flash-pass.html">Flash Pass (Beta)</a></li>
+                      <li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
 											<li><a href="sell.html">Sell a Spot</a></li>
 											<li><a href="how-it-works.html">How it works</a></li>
 											<li><a href="privacy-and-disclaimer.html">Privacy and Disclaimer</a></li>
@@ -48,11 +48,20 @@
 					<article id="main">
             <section class="wrapper style5" style="padding-top: 30px;">
               <div class="inner" style="width: 80%">
-                <h3>Street Name</h3>
+                <!--<h3>Street Name</h3>-->
 								<?php
-								$spoturl = $_GET['spoturl'];
-								//$spotid = $_GET['spotid'];
-
+								require('connect.php');
+								$spotID = $_GET['spotID'];
+								$query = mysqli_query($conn, "SELECT * FROM spots WHERE id=".$spotID);
+								$row = mysqli_fetch_array($query);
+								$priceperday = $row['priceperday'];
+								$spoturl = $row['spoturl'];
+								$price = $row['price'];
+								$distance = $row['distance'];
+								$restrictions = $row['restrictions'];
+								$features = $row['features'];
+								$status = $row['status'];
+								$statusColor = $row['statusColor'];
                 echo '<iframe src="'.$spoturl.'"
                   width="500" height="370" frameborder="0" style="border:0" allowfullscreen>';
 								?>
@@ -113,26 +122,19 @@
                     <li><span><button class="flashPassButton" onclick="highlight(this.id)" id="31">31</button></span></li>
                   </ul>
 									<?php
-									$dailyPrice = $_GET['perDayCost'];
-									echo '<p><b>Price: $'.$dailyPrice.'/day</b><br>';
+									echo '<p><b>Price: $'.$priceperday.'/day</b><br>';
 									?>
 										<b>Current Cost: <b id="currentCostDollarSign"></b><b id="currentCost">N/A</b></b><br>
 										<b style="color: red;">Red</b>: Unavailable during this day<br>
 										<b style="color: green;">Green</b>: Days selected to buy space<br>
                 </div>
 								<?php
-								$spoturl = $_GET['spoturl'];
-								$price = $_GET['price'];
-								$distance = $_GET['distance'];
-								$restrictions = $_GET['restrictions'];
-								$features = $_GET['features'];
-								$status = $_GET['status'];
-								$statusColor = $_GET['statusColor'];
-                  echo 'Distance: '.$distance.'<br>';
+
+                  echo 'Distance: About a '.$distance.' minute walk<br>';
                   echo 'Special Restrictions: '.$restrictions.'<br>';
-                  echo 'Special Features: Easy in and out parking<br>';
+                  echo 'Special Features: '.$features.'<br>';
                   echo 'Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>';
-                	echo '<a href="buy.php?spoturl='.$spoturl.'">
+                	echo '<a href="buy.php?spotID='.$spotID.'">
                   <button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Contact Seller</button></a>';
 									?>
               </div>
@@ -171,7 +173,7 @@
 
 					//Current Cost Stuff
 					var setZero = parseInt(0);
-					var perDayCost = parseInt("<?php $perDayCost = $_GET['perDayCost']; echo $perDayCost ?>");
+					var perDayCost = parseInt("<?php echo $priceperday ?>");
 					if(document.getElementById("currentCost").innerHTML == 'N/A') {
 						document.getElementById("currentCostDollarSign").textContent = '$';
 						document.getElementById("currentCost").textContent = setZero;

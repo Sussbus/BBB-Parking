@@ -29,9 +29,9 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.html">Home</a></li>
-											<li><a href="map.html">Spot Map</a></li>
+											<li><a href="map.php">Spot Map</a></li>
 											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
-											<li><a href="flash-pass.html">Flash Pass (Beta)</a></li>
+											<li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
 											<li><a href="sell.html">Sell a Spot</a></li>
 											<li><a href="how-it-works.html">How it works</a></li>
 											<li><a href="privacy-and-disclaimer.html">Privacy and Disclaimer</a></li>
@@ -51,17 +51,20 @@
 							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
 						</header>
 						<section class="wrapper style5" style="padding-top: 30px;">
-							<a href="map.html"><button style="font-size: 12px; padding-left: 10px; padding-right: 10px; margin-left: 30px; margin-bottom: 30px;">Back to Map</button></a>
+							<a href="map.php"><button style="font-size: 12px; padding-left: 10px; padding-right: 10px; margin-left: 30px; margin-bottom: 30px;">Back to Map</button></a>
 							<div class="inner" style="width: 55%">
 										<?php
-										//Variables being read from the URL
-										$spoturl = $_GET['spoturl'];
-										$price = $_GET['price'];
-										$distance = $_GET['distance'];
-										$restrictions = $_GET['restrictions'];
-										$features = $_GET['features'];
-										$status = $_GET['status'];
-										$statusColor = $_GET['statusColor'];
+										require('connect.php');
+										$spotID = $_GET['spotID'];
+										$query = mysqli_query($conn, "SELECT * FROM spots WHERE id=".$spotID);
+										$row = mysqli_fetch_array($query);
+										$spoturl = $row['spoturl'];
+										$price = $row['price'];
+										$distance = $row['distance'];
+										$restrictions = $row['restrictions'];
+										$features = $row['features'];
+										$status = $row['status'];
+										$statusColor = $row['statusColor'];
 										//The map of the route being rendered
 										echo '
 										<iframe src="'.$spoturl.'"
@@ -70,7 +73,7 @@
 										';
 										//Description of the spot being rendered
 										echo '<h4>$'.$price.' per semester</h4>';
-										echo '<p>Distance: '.$distance.'<br>';
+										echo '<p>Distance: About a '.$distance.' min walk<br>';
 										echo 'Special Restrictions: '.$restrictions.'<br>';
 										echo 'Special Features: '.$features.'<br>';
 										echo 'Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>';

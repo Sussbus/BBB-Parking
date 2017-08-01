@@ -29,9 +29,9 @@
 									<div id="menu">
 										<ul>
 											<li><a href="index.html">Home</a></li>
-											<li><a href="map.html">Spot Map</a></li>
+											<li><a href="map.php">Spot Map</a></li>
 											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
-											<li><a href="flash-pass.html">Flash Pass (Beta)</a></li>
+											<li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
 											<li><a href="sell.html">Sell a Spot</a></li>
 											<li><a href="how-it-works.html">How it works</a></li>
 											<li><a href="privacy-and-disclaimer.html">Privacy and Disclaimer</a></li>
@@ -54,8 +54,16 @@
 							<div class="inner" style="width: 60%">
 								<h2>Buying Form:</h2><br>
 								<?php
-								$spoturl = $_GET['spoturl'];
-								$price = $_GET['price'];
+								require('connect.php');
+								$spotID = $_GET['spotID'];
+								$query = mysqli_query($conn, "SELECT * FROM spots WHERE id=".$spotID);
+								$row = mysqli_fetch_array($query);
+								$priceperday = $row['priceperday'];
+								$spoturl = $row['spoturl'];
+								$price = $row['price'];
+								$distance = $row['distance'];
+								$restrictions = $row['restrictions'];
+								$features = $row['features'];
 								echo '<form method="POST" action="buySpot.php?spoturl='.$spoturl.'&price='.$price.'">';
 								?>
 									<input type="text" placeholder="Full Name" style="width: 60%;" id="name" name="name"/><br>
@@ -68,8 +76,6 @@
 									<!--<textarea type="field" placeholder="Comments" style="width: 60%; height: 20%;"></textarea><br>-->
 									<h2>Your Spot:</h2>
 										<?php
-										$spoturl = $_GET['spoturl'];
-										$price = $_GET['price'];
 										echo '<h4>$'.$price.' per semester</h4>';
 										echo '
 										<iframe src="'.$spoturl.'"
