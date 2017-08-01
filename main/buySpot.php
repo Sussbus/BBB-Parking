@@ -1,11 +1,18 @@
 <?php
+//Connecting to DB and Getting Spot Info
+require('connect.php');
+$spotID = $_GET['spotID'];
+$query = mysqli_query($conn, "SELECT * FROM spots WHERE id=".$spotID);
+$row = mysqli_fetch_array($query);
+$spoturl = $row['spoturl'];
+$price = $row['price'];
+
 //Form Vars
 $name = $_POST['name'];
 $email = $_POST['email'];
 $address = $_POST['address'];
 $phonenumber = $_POST['phonenumber'];
-$spoturl = $_GET['spoturl'];
-$price = $_GET['price'];
+
 
 //Email Vars
 $to = 'contact@bitbybite.co';

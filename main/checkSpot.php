@@ -79,7 +79,7 @@
 										echo 'Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>';
 										echo '
 										<br>
-										<a href="buy.php?spoturl='.$spoturl.'&price='.$price.'"><input type="submit" value="Contact Seller" style="font-size: 12px; padding-left: 11px; padding-right: 11px;" />';
+										<a href="buy.php?spotID='.$spotID.'"><input type="submit" value="Contact Seller" style="font-size: 12px; padding-left: 11px; padding-right: 11px;" />';
 										?>
 								</form>
 

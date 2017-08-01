@@ -64,7 +64,7 @@
 								$distance = $row['distance'];
 								$restrictions = $row['restrictions'];
 								$features = $row['features'];
-								echo '<form method="POST" action="buySpot.php?spoturl='.$spoturl.'&price='.$price.'">';
+								echo '<form method="POST" action="buySpot.php?spotID='.$spotID.'">';
 								?>
 									<input type="text" placeholder="Full Name" style="width: 60%;" id="name" name="name"/><br>
 									<input type="text" placeholder="Email" style="width: 60%;" id="email" name="email"/><br>
