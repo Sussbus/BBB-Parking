@@ -64,7 +64,11 @@
 										$restrictions = $row['restrictions'];
 										$features = $row['features'];
 										$status = $row['status'];
-										$statusColor = $row['statusColor'];
+										if($status == 'Avaliable') {
+											$statusColor = 'green';
+										} else {
+											$statusColor = 'red';
+										}
 										//The map of the route being rendered
 										echo '
 										<iframe src="'.$spoturl.'"

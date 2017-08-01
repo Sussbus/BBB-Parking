@@ -61,7 +61,6 @@
 								$restrictions = $row['restrictions'];
 								$features = $row['features'];
 								$status = $row['status'];
-								$statusColor = $row['statusColor'];
                 echo '<iframe src="'.$spoturl.'"
                   width="500" height="370" frameborder="0" style="border:0" allowfullscreen>';
 								?>
@@ -129,7 +128,11 @@
 										<b style="color: green;">Green</b>: Days selected to buy space<br>
                 </div>
 								<?php
-
+									if($status == 'Avaliable') {
+										$statusColor = 'green';
+									} else {
+										$statusColor = 'red';
+									}
                   echo 'Distance: About a '.$distance.' minute walk<br>';
                   echo 'Special Restrictions: '.$restrictions.'<br>';
                   echo 'Special Features: '.$features.'<br>';

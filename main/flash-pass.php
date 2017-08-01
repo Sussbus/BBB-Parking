@@ -66,7 +66,11 @@
 									$restrictions = $row['restrictions'];
 									$features = $row['features'];
 									$status = $row['status'];
-									$statusColor = $row['statusColor'];
+									if($status == 'Avaliable') {
+										$statusColor = 'green';
+									} else {
+										$statusColor = 'red';
+									}
 									echo '
 									<div class="inner" style="width: 50%">
 									<iframe src="'.$spoturl.'"
