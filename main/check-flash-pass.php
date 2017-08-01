@@ -62,7 +62,7 @@
 								$features = $row['features'];
 								$status = $row['status'];
                 echo '<iframe src="'.$spoturl.'"
-                  width="500" height="370" frameborder="0" style="border:0" allowfullscreen>';
+                  width="500" height="375" frameborder="0" style="border:0" allowfullscreen>';
 								?>
                 </iframe>
                 <div class="calendar">
@@ -121,7 +121,7 @@
                     <li><span><button class="flashPassButton" onclick="highlight(this.id)" id="31">31</button></span></li>
                   </ul>
 									<?php
-									echo '<p><b>Price: $'.$priceperday.'/day</b><br>';
+									echo '<p style="padding-top: 8px;"><b>Price: $'.$priceperday.'/day</b><br>';
 									?>
 										<b>Current Cost: <b id="currentCostDollarSign"></b><b id="currentCost">N/A</b></b><br>
 										<b style="color: red;">Red</b>: Unavailable during this day<br>
