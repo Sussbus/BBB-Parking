@@ -31,7 +31,7 @@
 											<li><a href="index.html">Home</a></li>
 											<li><a href="map.html">Spot Map</a></li>
 											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
-											<li><a href="flash-pass.html">Flash Pass</a></li>
+											<li><a href="flash-pass.html">Flash Pass (Beta)</a></li>
 											<li><a href="sell.html">Sell a Spot</a></li>
 											<li><a href="how-it-works.html">How it works</a></li>
 											<li><a href="privacy-and-disclaimer.html">Privacy and Disclaimer</a></li>

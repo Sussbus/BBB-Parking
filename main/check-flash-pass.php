@@ -31,7 +31,7 @@
 											<li><a href="index.html">Home</a></li>
 											<li><a href="map.html">Spot Map</a></li>
 											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
-                      <li><a href="flash-pass.html">Flash Pass</a></li>
+                      <li><a href="flash-pass.html">Flash Pass (Beta)</a></li>
 											<li><a href="sell.html">Sell a Spot</a></li>
 											<li><a href="how-it-works.html">How it works</a></li>
 											<li><a href="privacy-and-disclaimer.html">Privacy and Disclaimer</a></li>
@@ -113,10 +113,10 @@
                     <li><span><button class="flashPassButton" onclick="highlight(this.id)" id="31">31</button></span></li>
                   </ul>
 									<?php
-									$dailyPrice = $_GET['dailyPrice'];
+									$dailyPrice = $_GET['perDayCost'];
 									echo '<p><b>Price: $'.$dailyPrice.'/day</b><br>';
 									?>
-										<b>Cost: $<b id="currentCost">0</b></b><br>
+										<b>Current Cost: <b id="currentCostDollarSign"></b><b id="currentCost">N/A</b></b><br>
 										<b style="color: red;">Red</b>: Unavailable during this day<br>
 										<b style="color: green;">Green</b>: Days selected to buy space<br>
                 </div>
@@ -170,14 +170,25 @@
           x.classList.toggle("MyClass");
 
 					//Current Cost Stuff
+					var setZero = parseInt(0);
 					var perDayCost = parseInt("<?php $perDayCost = $_GET['perDayCost']; echo $perDayCost ?>");
+					if(document.getElementById("currentCost").innerHTML == 'N/A') {
+						document.getElementById("currentCostDollarSign").textContent = '$';
+						document.getElementById("currentCost").textContent = setZero;
+					}
 					var currentCost = parseInt(document.getElementById("currentCost").textContent);
+
 					if (document.getElementById(id).classList == 'flashPassButton MyClass') {
 						document.getElementById("currentCost").innerHTML = currentCost + perDayCost;
 					}
 					if (document.getElementById(id).classList == 'flashPassButton') {
 						document.getElementById("currentCost").innerHTML = currentCost - perDayCost;
+						if(document.getElementById("currentCost").innerHTML == 0) {
+							document.getElementById("currentCost").textContent = 'N/A';
+							document.getElementById("currentCostDollarSign").textContent = '';
+						}
 					}
+
       	}
       </script>
 	</body>
