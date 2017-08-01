@@ -66,27 +66,31 @@
 									$restrictions = $row['restrictions'];
 									$features = $row['features'];
 									$status = $row['status'];
+									$hasFlashPass = $row['hasFlashPass'];
+
 									if($status == 'Avaliable') {
 										$statusColor = 'green';
 									} else {
 										$statusColor = 'red';
 									}
-									echo '
-									<div class="inner" style="width: 50%">
-									<iframe src="'.$spoturl.'"
-										width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
-									</iframe>
-										<p><br>
-										Distance: About '.$distance.' minute walk<br>
-										Special Restrictions: '.$restrictions.'<br>
-										Special Features: '.$features.'<br>
-										Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>
-									<a href="check-flash-pass.php?spotID='.$id.'">
-										<button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Flash Pass Availability</button></a>
-								</div>
-									';
-									if($id != $maxID) {
-										echo '<center><hr style="width: 80%"></center>';
+										if($hasFlashPass != 0) {
+										echo '
+										<div class="inner" style="width: 50%">
+										<iframe src="'.$spoturl.'"
+											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
+										</iframe>
+											<p><br>
+											Distance: About '.$distance.' minute walk<br>
+											Special Restrictions: '.$restrictions.'<br>
+											Special Features: '.$features.'<br>
+											Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>
+										<a href="check-flash-pass.php?spotID='.$id.'">
+											<button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Flash Pass Availability</button></a>
+									</div>
+										';
+										if($id != $maxID) {
+											echo '<center><hr style="width: 80%"></center>';
+										}
 									}
 								}
 								?>
