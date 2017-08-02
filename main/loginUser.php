@@ -18,6 +18,7 @@
 
   if($isActivated == '0') {
     header("Location: login.php?isActivated=false");
+    exit();
   }
   //Checks if Submitted Email & Password Match the Ones in DB
   if($email == $dbemail && $password == $dbpassword) {

@@ -78,7 +78,7 @@
 									if($_GET['login'] == 'failed') {
 										echo '<p style="color: red;">Email or password doesn\'t match</p>';
 									}
-									if($_GET['isActivated']; == 'false') {
+									if($_GET['isActivated'] == 'false') {
 										echo '<p style="color: red;">Account email not confirmed</p>';
 									}
 									?>
