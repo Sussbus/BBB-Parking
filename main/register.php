@@ -28,13 +28,28 @@
 									<a href="#menu" class="menuToggle"><span>Menu</span></a>
 									<div id="menu">
 										<ul>
+											<?php
+											session_start();
+											error_reporting(0);
+											if(!$_SESSION['email']) {
+												echo '
+												<li><a href="login.php">Login</a></li>
+												<li><a href="register.php">Register Account</a></li>
+												<li><a href="how-it-works.php">How it works</a></li>
+												<li><a href="privacy-and-disclaimer.php">Privacy and Disclaimer</a></li>
+												';
+											} else {
+											echo '
 											<li><a href="index.php">Home</a></li>
 											<li><a href="map.php">Spot Map</a></li>
-											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
 											<li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
 											<li><a href="sell.php">Sell a Spot</a></li>
 											<li><a href="how-it-works.php">How it works</a></li>
 											<li><a href="privacy-and-disclaimer.php">Privacy and Disclaimer</a></li>
+											<li><a href="logout.php">Log Out</a></li>
+											';
+											}
+											?>
 											<!--<li><a href="#">Sign Up</a></li>
 											<li><a href="#">Log In</a></li>-->
 										</ul>
@@ -57,11 +72,17 @@
 									<input type="password" placeholder="Confirm Password" id="passwordConfirmed" name="passwordConfirmed" style="width: 60%; float: left; display: inline-block; margin-right: 3%; margin-bottom: 15px;" required/><br><br><br>
 									<?php
 									error_reporting(0);
+									//Warns User If Passwords Don't Match
 									if($_GET['passwordsMatch'] == 'false') {
 										echo '<p style="color: red;">Password don\'t match</p>';
 									}
+									//Warns User For Using Forbidden Symbols
 									if($_GET['forbiddenSymbols'] == true) {
 										echo '<p style="color: red;">Only letters, numbers and \'_\' allowed</p>';
+									}
+									//Warns User If Email Is In Use
+									if($_GET['userTaken'] == true) {
+										echo '<p style="color: red;">Email already in use</p>';
 									}
 									?>
 									<input type="submit" value="Register"/>

@@ -26,27 +26,45 @@
   $fullname = stripslashes($username);
   $password = stripcslashes($password);
   */
-  if (!preg_match("/^[0-9_a-zA-Z]*$/", $email)) {
-      header("Location: register.php?forbiddenSymbols=true");
-      exit();
+
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //header("Location: register.php?forbiddenSymbols=true");
+    echo $email;
+    exit();
   }
-  if (!preg_match("/^[0-9_a-zA-Z]*$/", $fullname)) {
-      header("Location: register.php?forbiddenSymbols=true");
-      exit();
+  if (!preg_match("/^[a-zA-Z ]*$/",$fullname)) {
+    //header("Location: register.php?forbiddenSymbols=true");
+    echo $fullname;
+    exit();
   }
+
   if (!preg_match("/^[0-9_a-zA-Z]*$/", $password)) {
-      header("Location: register.php?forbiddenSymbols=true");
+      //header("Location: register.php?forbiddenSymbols=true");
+      echo $password;
       exit();
   }
   if (!preg_match("/^[0-9_a-zA-Z]*$/", $phonenumber)) {
-      header("Location: register.php?forbiddenSymbols=true");
+      //header("Location: register.php?forbiddenSymbols=true");
+      echo $phonenumber;
       exit();
   }
   if($password != $passwordConfirmed) {
     header("Location: register.php?passwordsMatch=false");
     exit();
   }
-  $sql = "INSERT INTO users(fullname, email, phonenumber, password) VALUES('$fullname', '$email', '$phonenumber','$password')";
+  //Hashes password
+  $password = md5($password);
+  $query = "SELECT * FROM users WHERE email='".$email."'";
+  $result = mysqli_query($conn, $query);
+  //Number of rows in the table, 0 rows = user doesn't exist
+  $rowcount = mysqli_num_rows($result);
+    //Checks if there's an account with the same email
+    if($rowcount != 0) {
+      header("Location: register.php?userTaken=true");
+      exit();
+    }
+    //Where the new users info will be inserted (in users table)
+    $sql = "INSERT INTO users(fullname, email, phonenumber, password) VALUES('$fullname', '$email', '$phonenumber','$password')";
     if ($conn->query($sql) === TRUE) {
         session_start();
         $_SESSION['email']=$email;

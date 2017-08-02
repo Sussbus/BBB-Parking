@@ -13,7 +13,6 @@ $email = $_POST['email'];
 $address = $_POST['address'];
 $phonenumber = $_POST['phonenumber'];
 
-
 //Email Vars
 $to = 'contact@bitbybite.co';
 $subject = $name.' Spot Purchase';
