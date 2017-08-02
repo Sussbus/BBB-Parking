@@ -21,7 +21,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="index.html">Swift Park</a></h1>
+						<h1><a href="index.php">Swift Park</a></h1>
 						<nav id="nav">
 							<ul>
 								<li class="special">
@@ -40,7 +40,7 @@
 												';
 											} else {
 											echo '
-											<li><a href="index.html">Home</a></li>
+											<li><a href="index.php">Home</a></li>
 											<li><a href="map.php">Spot Map</a></li>
 											<li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
 											<li><a href="sell.php">Sell a Spot</a></li>
