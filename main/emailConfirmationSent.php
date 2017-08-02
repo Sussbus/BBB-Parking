@@ -61,35 +61,16 @@
 
 				<!-- Main -->
 					<article id="main">
+						<header>
+							<h2>Confirm Email</h2>
+							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
+						</header>
 						<section class="wrapper style5">
-							<div class="inner" style="width: 60%; height: 60%;">
-								<h2>Login:</h2><br>
-								<form method="POST" action="loginUser.php">
-									<input type="text" placeholder="Email" id="email" style="width: 50%;" name="email"/><br>
-									<input type="password" placeholder="Password" id="password" name="password" style="width: 50%; float: left; display: inline-block; margin-right: 3%; margin-bottom: 0px;"/><br><br><br>
-									<?php
-									error_reporting(0);
-									//Doesn't allow user to access login page if logged in
-									session_start();
-									if($_SESSION['email']) {
-										header("Location: index.php");
-									}
-									//Shows user an error if you can't log in
-									if($_GET['login'] == 'failed') {
-										echo '<p style="color: red;">Email or password doesn\'t match</p>';
-									}
-									if($_GET['isActivated']; == 'false') {
-										echo '<p style="color: red;">Account email not confirmed</p>';
-									}
-									?>
-									<input type="submit" value="Login"/>
-								</form>
-								<P>Don't have an account? <a href="register.php"><b style="color: #fcb02d;">Register Here</b></p></a>
-								<script>
-								function addBeginning() {
-									document.getElementById('phonenumber').value = '+1';
-								}
-								</script>
+							<div class="inner" style="width: 70%">
+
+								<center><p>You've successful created your account, a confirmation email will be sent to you.<br><center>Thank you!</center></p>
+								<!--<a href="index.php"><button style="padding-left: 12px; padding-right: 12px; font-size: 12px;">Return Home</buttom></a>-->
+
 							</div>
 
 						</section>
@@ -98,10 +79,10 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<ul class="icons">
-							<li><a href="https://twitter.com/bitbybiteco" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="https://www.facebook.com/bitbybite/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<!--<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>-->
-							<!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<!--<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
 							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
 						<ul class="copyright">

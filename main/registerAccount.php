@@ -52,6 +52,7 @@
     header("Location: register.php?passwordsMatch=false");
     exit();
   }
+
   //Hashes password
   $password = md5($password);
   $query = "SELECT * FROM users WHERE email='".$email."'";
@@ -66,8 +67,24 @@
     //Where the new users info will be inserted (in users table)
     $sql = "INSERT INTO users(fullname, email, phonenumber, password) VALUES('$fullname', '$email', '$phonenumber','$password')";
     if ($conn->query($sql) === TRUE) {
-        session_start();
-        $_SESSION['email']=$email;
+          //Email Vars
+          $to = $email;
+          $headers = "MIME-Version: 1.0" . "\r\n";
+          $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+          $subject = 'Confirm SpotDojo Account';
+          $message = '
+          <html>
+            <body>
+              <div style="width: 80%; margin-left: 20%;">
+                <p style="font-family: Avenir; font-size: 16px;">
+                  To confirm your account, <a href="confrmEmail.php?email='.$email.'&userConfirmed=true">click here.</a>
+                </p>
+                <p style="font-family: Avenir;" font-size: 18px;>Price: '.$price.'</p>
+              </div>
+            </body>
+          </html>
+          ';
+        mail ($to, $subject, $message, $headers);
         header('Location: index.php');
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

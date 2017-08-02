@@ -12,9 +12,13 @@
   //Gather Users From DB
   $query = mysqli_query($conn, "SELECT * FROM users WHERE email='".$email."'");
   $row = mysqli_fetch_array($query);
+  $isActivated = $row['accountActivated'];
   $dbemail = $row['email'];
   $dbpassword = $row['password'];
 
+  if($isActivated == '0') {
+    header("Location: login.php?isActivated=false");
+  }
   //Checks if Submitted Email & Password Match the Ones in DB
   if($email == $dbemail && $password == $dbpassword) {
     echo 'success';
