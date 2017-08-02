@@ -28,32 +28,13 @@
 									<a href="#menu" class="menuToggle"><span>Menu</span></a>
 									<div id="menu">
 										<ul>
-											<?php
-											session_start();
-											//Doesn't allow user to access login page if logged in
-											if(!$_SESSION['email']) {
-												header("Location: index.php");
-											}
-											error_reporting(0);
-											if(!$_SESSION['email']) {
-												echo '
-												<li><a href="login.php">Login</a></li>
-												<li><a href="register.php">Register Account</a></li>
-												<li><a href="how-it-works.php">How it works</a></li>
-												<li><a href="privacy-and-disclaimer.php">Privacy and Disclaimer</a></li>
-												';
-											} else {
-											echo '
 											<li><a href="index.html">Home</a></li>
 											<li><a href="map.php">Spot Map</a></li>
+											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
 											<li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
 											<li><a href="sell.php">Sell a Spot</a></li>
 											<li><a href="how-it-works.php">How it works</a></li>
 											<li><a href="privacy-and-disclaimer.php">Privacy and Disclaimer</a></li>
-											<li><a href="logout.php">Log Out</a></li>
-											';
-											}
-											?>
 											<!--<li><a href="#">Sign Up</a></li>
 											<li><a href="#">Log In</a></li>-->
 										</ul>
@@ -65,54 +46,32 @@
 
 				<!-- Main -->
 					<article id="main">
-						<header>
-							<h2>Flash Passes</h2>
-							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
-						</header>
 						<section class="wrapper style5">
-
-								<?php
-								require('connect.php');
-								$query = mysqli_query($conn, "SELECT * FROM spots");
-								$checkMaxID = mysqli_query($conn, "SELECT MAX(id) AS maxID FROM spots");
-								$num_rows = mysqli_fetch_array($checkMaxID);
-								$maxID = $num_rows['maxID'];
-								while($row = mysqli_fetch_array($query)) {
-									$id = $row['id'];
-									$spoturl = $row['spoturl'];
-									$price = $row['price'];
-									$distance = $row['distance'];
-									$restrictions = $row['restrictions'];
-									$features = $row['features'];
-									$status = $row['status'];
-									$hasFlashPass = $row['hasFlashPass'];
-
-									if($status == 'Avaliable') {
-										$statusColor = 'green';
-									} else {
-										$statusColor = 'red';
+							<div class="inner" style="width: 60%">
+								<h2>Register Account:</h2><br>
+								<form method="POST" action="registerAccount.php">
+									<input type="text" placeholder="Full Name" id="fullname" name="fullname" style="width: 60%;" required/><br>
+									<input type="email" placeholder="Email" id="email" style="width: 60%;" name="email" required/><br>
+									<input type="text" placeholder="Phone Number" id="phonenumber" style="width: 35%;" name="phonenumber" onclick="addBeginning()" required/><br>
+									<input type="password" placeholder="Password" id="password" name="password" style="width: 60%; float: left; display: inline-block; margin-right: 3%; margin-bottom: 25px;" required/><br><br>
+									<input type="password" placeholder="Confirm Password" id="passwordConfirmed" name="passwordConfirmed" style="width: 60%; float: left; display: inline-block; margin-right: 3%; margin-bottom: 15px;" required/><br><br><br>
+									<?php
+									error_reporting(0);
+									if($_GET['passwordsMatch'] == 'false') {
+										echo '<p style="color: red;">Password don\'t match</p>';
 									}
-										if($hasFlashPass != 0) {
-										echo '
-										<div class="inner" style="width: 50%">
-										<iframe src="'.$spoturl.'"
-											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
-										</iframe>
-											<p><br>
-											Distance: About '.$distance.' minute walk<br>
-											Special Restrictions: '.$restrictions.'<br>
-											Special Features: '.$features.'<br>
-											Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>
-										<a href="check-flash-pass.php?spotID='.$id.'">
-											<button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Flash Pass Availability</button></a>
-									</div>
-										';
-										if($id != $maxID) {
-											echo '<center><hr style="width: 80%"></center>';
-										}
+									if($_GET['forbiddenSymbols'] == true) {
+										echo '<p style="color: red;">Only letters, numbers and \'_\' allowed</p>';
 									}
+									?>
+									<input type="submit" value="Register"/>
+								</form>
+								<script>
+								function addBeginning() {
+									document.getElementById('phonenumber').value = '+1';
 								}
-								?>
+								</script>
+							</div>
 
 						</section>
 					</article>

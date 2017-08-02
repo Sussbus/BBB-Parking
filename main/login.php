@@ -30,10 +30,6 @@
 										<ul>
 											<?php
 											session_start();
-											//Doesn't allow user to access login page if logged in
-											if(!$_SESSION['email']) {
-												header("Location: index.php");
-											}
 											error_reporting(0);
 											if(!$_SESSION['email']) {
 												echo '
@@ -65,54 +61,32 @@
 
 				<!-- Main -->
 					<article id="main">
-						<header>
-							<h2>Flash Passes</h2>
-							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
-						</header>
 						<section class="wrapper style5">
-
-								<?php
-								require('connect.php');
-								$query = mysqli_query($conn, "SELECT * FROM spots");
-								$checkMaxID = mysqli_query($conn, "SELECT MAX(id) AS maxID FROM spots");
-								$num_rows = mysqli_fetch_array($checkMaxID);
-								$maxID = $num_rows['maxID'];
-								while($row = mysqli_fetch_array($query)) {
-									$id = $row['id'];
-									$spoturl = $row['spoturl'];
-									$price = $row['price'];
-									$distance = $row['distance'];
-									$restrictions = $row['restrictions'];
-									$features = $row['features'];
-									$status = $row['status'];
-									$hasFlashPass = $row['hasFlashPass'];
-
-									if($status == 'Avaliable') {
-										$statusColor = 'green';
-									} else {
-										$statusColor = 'red';
+							<div class="inner" style="width: 60%; height: 60%;">
+								<h2>Login:</h2><br>
+								<form method="POST" action="loginUser.php">
+									<input type="text" placeholder="Email" id="email" style="width: 50%;" name="email"/><br>
+									<input type="password" placeholder="Password" id="password" name="password" style="width: 50%; float: left; display: inline-block; margin-right: 3%; margin-bottom: 0px;"/><br><br><br>
+									<?php
+									error_reporting(0);
+									//Doesn't allow user to access login page if logged in
+									session_start();
+									if($_SESSION['email']) {
+										header("Location: index.php");
 									}
-										if($hasFlashPass != 0) {
-										echo '
-										<div class="inner" style="width: 50%">
-										<iframe src="'.$spoturl.'"
-											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
-										</iframe>
-											<p><br>
-											Distance: About '.$distance.' minute walk<br>
-											Special Restrictions: '.$restrictions.'<br>
-											Special Features: '.$features.'<br>
-											Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>
-										<a href="check-flash-pass.php?spotID='.$id.'">
-											<button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Flash Pass Availability</button></a>
-									</div>
-										';
-										if($id != $maxID) {
-											echo '<center><hr style="width: 80%"></center>';
-										}
+									//Shows user an error if you can't log in
+									if($_GET['login'] == 'failed') {
+										echo '<p style="color: red;">Email or password doesn\'t match</p>';
 									}
+									?>
+									<input type="submit" value="Login"/>
+								</form>
+								<script>
+								function addBeginning() {
+									document.getElementById('phonenumber').value = '+1';
 								}
-								?>
+								</script>
+							</div>
 
 						</section>
 					</article>

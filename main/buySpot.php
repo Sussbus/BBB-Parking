@@ -44,5 +44,5 @@ echo $email;
 echo $address;
 echo $phonenumber;
 */
-header("Location: successfulPurchase.html"); /* Redirect browser */
+header("Location: successfulPurchase.php"); /* Redirect browser */
 ?>

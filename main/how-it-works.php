@@ -30,10 +30,6 @@
 										<ul>
 											<?php
 											session_start();
-											//Doesn't allow user to access login page if logged in
-											if(!$_SESSION['email']) {
-												header("Location: index.php");
-											}
 											error_reporting(0);
 											if(!$_SESSION['email']) {
 												echo '
@@ -66,53 +62,31 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>Flash Passes</h2>
+							<h2>How it Works</h2>
 							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
 						</header>
 						<section class="wrapper style5">
+							<div class="inner" style="width: 70%">
 
-								<?php
-								require('connect.php');
-								$query = mysqli_query($conn, "SELECT * FROM spots");
-								$checkMaxID = mysqli_query($conn, "SELECT MAX(id) AS maxID FROM spots");
-								$num_rows = mysqli_fetch_array($checkMaxID);
-								$maxID = $num_rows['maxID'];
-								while($row = mysqli_fetch_array($query)) {
-									$id = $row['id'];
-									$spoturl = $row['spoturl'];
-									$price = $row['price'];
-									$distance = $row['distance'];
-									$restrictions = $row['restrictions'];
-									$features = $row['features'];
-									$status = $row['status'];
-									$hasFlashPass = $row['hasFlashPass'];
+								<h2>Buyer</h2>
+								<p>1. Fill out the contact form located in the "Buy" page</p>
+								<p>2. You should receive an email within 24 hours. You may respond with any questions or concerns you might have</p>
+								<p>3. Before the homeowner's information can be given out (home address, phone number, email, and name) you must send a $100 commission check. This $100 fee is a finders fee and is the only payment that Swift Park Company will require.</p>
+								<p>4. Once the commission check is received you will be emailed all of the homeowner's information. Now you may make contact with the homeowner and work out any further details including time of arrival and departure, payment methods, etc.</p>
+								<br>
+								<br>
+								<h2>Seller</h2>
+								<p>This service is 100% free of charge</p>
+									<p>1. Fill out the contact form located in the "Looking to Sell" page</p>
+									<p>2. Wait</p>
+									<p>3. You will be contacted as soon as a customer expresses interest in your spot</p>
+									<p>4. With your consent I will relay all of the your information to the customer and all of the customer's information to you</p>
+									<br><br>
+									<center><hr></center>
+									<p><b>Please note that The Swift Park cannot be held liable for any damages, physical or other.
+										Swift Park Company is a private business and is not associated with New Trier High School</b><p>
 
-									if($status == 'Avaliable') {
-										$statusColor = 'green';
-									} else {
-										$statusColor = 'red';
-									}
-										if($hasFlashPass != 0) {
-										echo '
-										<div class="inner" style="width: 50%">
-										<iframe src="'.$spoturl.'"
-											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
-										</iframe>
-											<p><br>
-											Distance: About '.$distance.' minute walk<br>
-											Special Restrictions: '.$restrictions.'<br>
-											Special Features: '.$features.'<br>
-											Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>
-										<a href="check-flash-pass.php?spotID='.$id.'">
-											<button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Flash Pass Availability</button></a>
-									</div>
-										';
-										if($id != $maxID) {
-											echo '<center><hr style="width: 80%"></center>';
-										}
-									}
-								}
-								?>
+							</div>
 
 						</section>
 					</article>

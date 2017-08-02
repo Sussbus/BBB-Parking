@@ -15,7 +15,13 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
 	<body>
-
+		<?php
+		//Doesn't allow user to access login page if logged in
+		session_start();
+		if(!$_SESSION['email']) {
+			header("Location: index.php");
+		}
+		?>
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
@@ -29,11 +35,6 @@
 									<div id="menu">
 										<ul>
 											<?php
-											session_start();
-											//Doesn't allow user to access login page if logged in
-											if(!$_SESSION['email']) {
-												header("Location: index.php");
-											}
 											error_reporting(0);
 											if(!$_SESSION['email']) {
 												echo '
@@ -66,53 +67,24 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>Flash Passes</h2>
+							<h2>Sell a Spot</h2>
 							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
 						</header>
 						<section class="wrapper style5">
+							<div class="inner" style="width: 60%">
+								<h2>Selling Form:</h2><br>
+								<form>
+									<input type="text" placeholder="Street Address" style="width: 60%;" required/><br>
+									<input type="text" placeholder="City" style="width: 28.5%; float: left; display: inline-block; margin-right: 3%" required/>
+									<input type="text" placeholder="State" style="width: 28.5%; display: inline-block;" required/><br><br>
+									<!--
+									<input type="text" placeholder="Address Line 1" style="width: 50%;"/><br>
+									<input type="text" placeholder="Address Line 2" style="width: 50%;"/><br>-->
+									<textarea type="field" placeholder="Comments" style="width: 60%; height: 20%;"></textarea><br>
+									<input type="submit" value="Submit"/>
+								</form>
 
-								<?php
-								require('connect.php');
-								$query = mysqli_query($conn, "SELECT * FROM spots");
-								$checkMaxID = mysqli_query($conn, "SELECT MAX(id) AS maxID FROM spots");
-								$num_rows = mysqli_fetch_array($checkMaxID);
-								$maxID = $num_rows['maxID'];
-								while($row = mysqli_fetch_array($query)) {
-									$id = $row['id'];
-									$spoturl = $row['spoturl'];
-									$price = $row['price'];
-									$distance = $row['distance'];
-									$restrictions = $row['restrictions'];
-									$features = $row['features'];
-									$status = $row['status'];
-									$hasFlashPass = $row['hasFlashPass'];
-
-									if($status == 'Avaliable') {
-										$statusColor = 'green';
-									} else {
-										$statusColor = 'red';
-									}
-										if($hasFlashPass != 0) {
-										echo '
-										<div class="inner" style="width: 50%">
-										<iframe src="'.$spoturl.'"
-											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
-										</iframe>
-											<p><br>
-											Distance: About '.$distance.' minute walk<br>
-											Special Restrictions: '.$restrictions.'<br>
-											Special Features: '.$features.'<br>
-											Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>
-										<a href="check-flash-pass.php?spotID='.$id.'">
-											<button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Flash Pass Availability</button></a>
-									</div>
-										';
-										if($id != $maxID) {
-											echo '<center><hr style="width: 80%"></center>';
-										}
-									}
-								}
-								?>
+							</div>
 
 						</section>
 					</article>

@@ -30,10 +30,6 @@
 										<ul>
 											<?php
 											session_start();
-											//Doesn't allow user to access login page if logged in
-											if(!$_SESSION['email']) {
-												header("Location: index.php");
-											}
 											error_reporting(0);
 											if(!$_SESSION['email']) {
 												echo '
@@ -66,53 +62,32 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>Flash Passes</h2>
+							<h2>Privacy and Disclaimer</h2>
 							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
 						</header>
 						<section class="wrapper style5">
+							<div class="inner" style="width: 70%">
 
-								<?php
-								require('connect.php');
-								$query = mysqli_query($conn, "SELECT * FROM spots");
-								$checkMaxID = mysqli_query($conn, "SELECT MAX(id) AS maxID FROM spots");
-								$num_rows = mysqli_fetch_array($checkMaxID);
-								$maxID = $num_rows['maxID'];
-								while($row = mysqli_fetch_array($query)) {
-									$id = $row['id'];
-									$spoturl = $row['spoturl'];
-									$price = $row['price'];
-									$distance = $row['distance'];
-									$restrictions = $row['restrictions'];
-									$features = $row['features'];
-									$status = $row['status'];
-									$hasFlashPass = $row['hasFlashPass'];
+								<h2>Privacy Disclaimer</h2>
+								<p>Personal information collected on this website will only be shared under the following circumstances:</p>
+								<li style="padding-bottom: 10px;">once a parking spot lessor and lessee are matched and both parties have agreed to the annual cost</li>
+								<li style="padding-bottom: 10px;">once the commission is received, each party will receive the name, address, phone number and e-mail of the party with whom they are ‘matched.’</li>
+								<p>  Note that any personal information entered on the site will not be disclosed to anyone else using this site.</p>
+								<br>
+								<h2>Limitations of Obligation</h2>
+								<p>Note that my role is to broker the agreement between the lessor and lessee.
+									The parking terms for the year will need to be worked out between both parties.
+									This includes but is not limited to:</p>
+									<li style="padding-bottom: 10px;">window of times to leave and arrive with vehicle</li>
+									<li style="padding-bottom: 10px;">payment terms - monthly, semester, etc</li>
+									<li style="padding-bottom: 10px;">form of payment - check or cash</li>
+									<li style="padding-bottom: 10px;">spare key for lessor to move vehicle as needed</li>
+									<li style="padding-bottom: 10px;">driveway  or street parking; typically cars will need to parked on a driveway until 11am due to street parking restrictions</li>
+									<br><br>
+									<p><b>Please note that The Swift Park cannot be held liable for any damages, physical or other.
+										Swift Park Company is a private business and is not associated with New Trier High School</b><p>
 
-									if($status == 'Avaliable') {
-										$statusColor = 'green';
-									} else {
-										$statusColor = 'red';
-									}
-										if($hasFlashPass != 0) {
-										echo '
-										<div class="inner" style="width: 50%">
-										<iframe src="'.$spoturl.'"
-											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
-										</iframe>
-											<p><br>
-											Distance: About '.$distance.' minute walk<br>
-											Special Restrictions: '.$restrictions.'<br>
-											Special Features: '.$features.'<br>
-											Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>
-										<a href="check-flash-pass.php?spotID='.$id.'">
-											<button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Flash Pass Availability</button></a>
-									</div>
-										';
-										if($id != $maxID) {
-											echo '<center><hr style="width: 80%"></center>';
-										}
-									}
-								}
-								?>
+							</div>
 
 						</section>
 					</article>
@@ -122,8 +97,8 @@
 						<ul class="icons">
 							<li><a href="https://twitter.com/bitbybiteco" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="https://www.facebook.com/bitbybite/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<!--<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>-->
-							<!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
+							<!--<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
 							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 						</ul>
 						<ul class="copyright">

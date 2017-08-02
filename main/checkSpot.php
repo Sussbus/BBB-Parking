@@ -28,13 +28,32 @@
 									<a href="#menu" class="menuToggle"><span>Menu</span></a>
 									<div id="menu">
 										<ul>
+											<?php
+											session_start();
+											//Doesn't allow user to access login page if logged in
+											if(!$_SESSION['email']) {
+												header("Location: index.php");
+											}
+											error_reporting(0);
+											if(!$_SESSION['email']) {
+												echo '
+												<li><a href="login.php">Login</a></li>
+												<li><a href="register.php">Register Account</a></li>
+												<li><a href="how-it-works.php">How it works</a></li>
+												<li><a href="privacy-and-disclaimer.php">Privacy and Disclaimer</a></li>
+												';
+											} else {
+											echo '
 											<li><a href="index.html">Home</a></li>
 											<li><a href="map.php">Spot Map</a></li>
-											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
 											<li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
-											<li><a href="sell.html">Sell a Spot</a></li>
-											<li><a href="how-it-works.html">How it works</a></li>
-											<li><a href="privacy-and-disclaimer.html">Privacy and Disclaimer</a></li>
+											<li><a href="sell.php">Sell a Spot</a></li>
+											<li><a href="how-it-works.php">How it works</a></li>
+											<li><a href="privacy-and-disclaimer.php">Privacy and Disclaimer</a></li>
+											<li><a href="logout.php">Log Out</a></li>
+											';
+											}
+											?>
 											<!--<li><a href="#">Sign Up</a></li>
 											<li><a href="#">Log In</a></li>-->
 										</ul>
@@ -46,50 +65,53 @@
 
 				<!-- Main -->
 					<article id="main">
-						<header>
-							<h2>Spot</h2>
-							<!--<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>-->
-						</header>
-						<section class="wrapper style5" style="padding-top: 30px;">
-							<a href="map.php"><button style="font-size: 12px; padding-left: 10px; padding-right: 10px; margin-left: 30px; margin-bottom: 30px;">Back to Map</button></a>
-							<div class="inner" style="width: 55%">
-										<?php
-										require('connect.php');
-										$spotID = $_GET['spotID'];
-										$query = mysqli_query($conn, "SELECT * FROM spots WHERE id=".$spotID);
-										$row = mysqli_fetch_array($query);
-										$spoturl = $row['spoturl'];
-										$price = $row['price'];
-										$distance = $row['distance'];
-										$restrictions = $row['restrictions'];
-										$features = $row['features'];
-										$status = $row['status'];
-										if($status == 'Avaliable') {
-											$statusColor = 'green';
-										} else {
-											$statusColor = 'red';
-										}
-										//The map of the route being rendered
-										echo '
-										<iframe src="'.$spoturl.'"
-											width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
-										</iframe>
-										';
-										//Description of the spot being rendered
-										echo '<h4>$'.$price.' per semester</h4>';
-										echo '<p>Distance: About a '.$distance.' min walk<br>';
-										echo 'Special Restrictions: '.$restrictions.'<br>';
-										echo 'Special Features: '.$features.'<br>';
-										echo 'Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>';
-										echo '
-										<br>
-										<a href="buy.php?spotID='.$spotID.'"><input type="submit" value="Contact Seller" style="font-size: 12px; padding-left: 11px; padding-right: 11px;" />';
-										?>
-								</form>
-
-							</div>
-
-						</section>
+            <section class="wrapper style5" style="padding-top: 30px;">
+							<a href="map.php"><button style="padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 2px; font-size: 12px; margin-left: 30px; position: absolute;">Back to Map</button></a>
+              <div class="inner" style="width: 60%">
+                <!--<h3>Street Name</h3>-->
+								<?php
+								require('connect.php');
+								$spotID = $_GET['spotID'];
+								$query = mysqli_query($conn, "SELECT * FROM spots WHERE id=".$spotID);
+								$row = mysqli_fetch_array($query);
+								$priceperday = $row['priceperday'];
+								$spoturl = $row['spoturl'];
+								$price = $row['price'];
+								$distance = $row['distance'];
+								$restrictions = $row['restrictions'];
+								$features = $row['features'];
+								$status = $row['status'];
+                echo '<iframe src="'.$spoturl.'"
+                  width="500" height="375" frameborder="0" style="border:0" allowfullscreen>';
+								?>
+                </iframe>
+                <div style="width:30%; float: right;">
+                        <h2 style="padding-left: 20px; padding-bottom: 0px!important; color: #8c8c8c;">Bidding:</h2>
+												<h5 style="padding-left: 20px; font-size: 18px; font-family: Avenir; color: #8c8c8c;">Highest Bid: <br>$<?php echo $price;?></h5>
+												<p style="padding-left: 20px; font-size: 18px; font-family: Avenir; padding-bottom: 30px; color: #8c8c8c;">Time Left: 1 hr 23 min</p>
+												<input type="text" placeholder="Your bid" style="width: 70%; margin-left: 20px;" id="bidInput" onclick="addDollarSign()"/><br>
+												<input type="submit" value="Bid" style="margin-left: 20px; margin-bottom: 20px;"/>
+                </div>
+								<script>
+								function addDollarSign() {
+									document.getElementById('bidInput').value = '$';
+								}
+								</script>
+								<?php
+									if($status == 'Avaliable') {
+										$statusColor = 'green';
+									} else {
+										$statusColor = 'red';
+									}
+                  echo 'Distance: About a '.$distance.' minute walk<br>';
+                  echo 'Special Restrictions: '.$restrictions.'<br>';
+                  echo 'Special Features: '.$features.'<br>';
+                  echo 'Status: <b style="color: '.$statusColor.';">'.$status.'</b></p>';
+                	/*echo '<a href="buy.php?spotID='.$spotID.'">
+                  <button style="font-size: 12px; padding-left: 10px; padding-right: 10px;">Contact Seller</button></a>';*/
+									?>
+              </div>
+            </section>
 					</article>
 
 				<!-- Footer -->
@@ -116,6 +138,6 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-
+			<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	</body>
 </html>

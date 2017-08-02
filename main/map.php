@@ -28,13 +28,28 @@
 									<a href="#menu" class="menuToggle"><span>Menu</span></a>
 									<div id="menu">
 										<ul>
+											<?php
+											session_start();
+											error_reporting(0);
+											if(!$_SESSION['email']) {
+												echo '
+												<li><a href="login.php">Login</a></li>
+												<li><a href="register.php">Register Account</a></li>
+												<li><a href="how-it-works.php">How it works</a></li>
+												<li><a href="privacy-and-disclaimer.php">Privacy and Disclaimer</a></li>
+												';
+											} else {
+											echo '
 											<li><a href="index.html">Home</a></li>
 											<li><a href="map.php">Spot Map</a></li>
-											<!--<li><a href="semester-parking.html">Semester Parking</a></li>-->
 											<li><a href="flash-pass.php">Flash Pass (Beta)</a></li>
-											<li><a href="sell.html">Sell a Spot</a></li>
-											<li><a href="how-it-works.html">How it works</a></li>
-											<li><a href="privacy-and-disclaimer.html">Privacy and Disclaimer</a></li>
+											<li><a href="sell.php">Sell a Spot</a></li>
+											<li><a href="how-it-works.php">How it works</a></li>
+											<li><a href="privacy-and-disclaimer.php">Privacy and Disclaimer</a></li>
+											<li><a href="logout.php">Log Out</a></li>
+											';
+											}
+											?>
 											<!--<li><a href="#">Sign Up</a></li>
 											<li><a href="#">Log In</a></li>-->
 										</ul>
@@ -114,6 +129,12 @@
 	                window.location = newTrierMarker.url;
 	              });
 									<?php
+									//Doesn't allow user to access login page if logged in
+									session_start();
+									if(!$_SESSION['email']) {
+										header("Location: index.php");
+									}
+
 									require('connect.php');
 									$query = mysqli_query($conn, "SELECT * FROM spots");
 										while($row = mysqli_fetch_array($query)) {
