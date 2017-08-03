@@ -90,7 +90,7 @@
 												<h5 style="padding-left: 20px; font-size: 18px; font-family: Avenir; color: #8c8c8c;">Highest Bid: <br><span id="highestPrice">$<?php echo $price;?></span></h5>
 												<p style="padding-left: 20px; font-size: 18px; font-family: Avenir; padding-bottom: 30px; color: #8c8c8c;">Time Left: 1 hr 23 min</p>
 												<input type="text" placeholder="Your bid" style="width: 70%; margin-left: 20px;" id="bidInput" onclick="addDollarSign()"/><br>
-												<input type="submit" id="submitBid" value="Bid" style="margin-left: 20px; margin-bottom: 20px;"/>
+												<input type="submit" value="Bid" style="margin-left: 20px; margin-bottom: 20px;" onclick="submitBid()" />
                 </div>
 								<script>
 								function addDollarSign() {
@@ -139,24 +139,27 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 
-      <script type="text/javascript" src="jquery-1.3.2.js"> </script>
+      <!-- <script type="text/javascript" src="jquery-1.3.2.js"> </script> -->
 
        <script type="text/javascript">
       //  ajax call to bids
        $(document).ready(function() {
-
-          $("#submitBid").click(function() {
+          var interval;
+          function submitBid() {
             $.ajax({    //create an ajax request to load_page.php
               type: "GET",
               url: "checkSpot.php",
               dataType: "html",   //expect html to be returned
               success: function(response){
                   $("#highestPrice").html(response);
+                  interval = setTimeout(submitBid, 1000);
                   //alert(response);
-              }
+                  console.log(response);
+                }
+            });
+          }
 
-          });
-      });
+            submitBid();
       });
 
       </script>
