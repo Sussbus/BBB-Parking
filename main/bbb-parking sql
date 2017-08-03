@@ -1,0 +1,123 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Aug 03, 2017 at 12:13 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `bbb-parking`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spots`
+--
+
+CREATE TABLE `spots` (
+  `id` int(11) NOT NULL,
+  `spoturl` text NOT NULL,
+  `hasFlashPass` tinyint(1) NOT NULL,
+  `price` int(11) NOT NULL,
+  `distance` int(11) NOT NULL,
+  `restrictions` text NOT NULL,
+  `features` text NOT NULL,
+  `status` text NOT NULL,
+  `priceperday` int(11) NOT NULL,
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `spots`
+--
+
+INSERT INTO `spots` (`id`, `spoturl`, `hasFlashPass`, `price`, `distance`, `restrictions`, `features`, `status`, `priceperday`, `latitude`, `longitude`) VALUES
+(1, 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d2960.072049847086!2d-87.74598503513526!3d42.10592770910596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc459e0380681%3A0x493d7fd327d0cb19!2s972+Elm+Street%2C+Winnetka%2C+IL!3m2!1d42.1056399!2d-87.74079069999999!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494369059898', 1, 1250, 18, 'N/A', 'Wide driveway', 'Avaliable', 30, 42.097, -87.718974),
+(2, 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d2960.072049847086!2d-87.74598503513526!3d42.10592770910596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc459e0380681%3A0x493d7fd327d0cb19!2s972+Elm+Street%2C+Winnetka%2C+IL!3m2!1d42.1056399!2d-87.74079069999999!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494369059898', 1, 1800, 6, 'Spare keys needed', 'Close to school', 'Avaliable', 25, 42.094, -87.716),
+(3, 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7572.108106674997!2d-87.74512909865025!3d42.103163266889545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x880fc4f8cdafb133%3A0xe278cf86619fc9ae!2sChestnut+St%2C+Winnetka%2C+IL+60093!3m2!1d42.1009852!2d-87.7352622!4m5!1s0x880fc4f7f980710f%3A0xc9c2e067b4695869!2sNew+Trier+Township%2C+IL!3m2!1d42.105579399999996!2d-87.7468071!5e0!3m2!1sen!2sus!4v1494368773063', 1, 1200, 9, 'No early bird', 'Driveway not plowed', 'Unavailable', 35, 42.097, -87.725);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(40) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phonenumber` int(10) NOT NULL,
+  `password` text NOT NULL,
+  `accountActivated` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `email`, `phonenumber`, `password`, `accountActivated`) VALUES
+(1, 'Jacob Sussman', 'jacobsussman5@gmail.com', 847, 'password', 0),
+(4, 'Bob Smith', 'bobsmith@gmail.com', 1234455344, 'password', 0),
+(5, 'Bob Smith', 'bobsmith@gmail.com', 1234455344, 'ssaaSA', 0),
+(6, 'John Smith', 'johnnyboy@gmail.com', 2147483647, 'bigjohnny', 0),
+(7, 'Jean Smith', 'bigjeans@gmail.com', 2147483647, 'mypassword', 0),
+(8, 'Jason Rosenfield', 'jasonbeast@gmail.com', 902139213, 'pas', 0),
+(9, 'Jason Rosenfield', 'jacobsussman5@gmail.com', 3132131, '1', 0),
+(10, 'Jacob', 'jacobsussman5@gmail.com', 1321321, 'pass', 0),
+(11, 'Jacob Sussman', 'jacobsussman5@gmail.com', 313213, 'pass', 0),
+(12, 'John Cena', 'jasonbeast@gmail.com', 12321313, '1a1dc91c907325c69271ddf0c944bc72', 0),
+(13, 'John Johnson', 'johnny@gmail.com', 31232131, '5f4dcc3b5aa765d61d8327deb882cf99', 0),
+(14, 'Jacob Sussman', 'jacobsussman5@gmail.com', 3112312, 'c4ca4238a0b923820dcc509a6f75849b', 0),
+(15, 'Bob Sith', 'bob@gmail.com', 12345, '83878c91171338902e0fe0fb97a8c47a', 0),
+(20, 'Bob Johnson', 'jacobsussman2000@gmail.com', 2147483647, '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(21, 'Jason Rosenfield', 'thegamingtacos@gmail.com', 2147483647, '5f4dcc3b5aa765d61d8327deb882cf99', 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `spots`
+--
+ALTER TABLE `spots`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `spots`
+--
+ALTER TABLE `spots`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
