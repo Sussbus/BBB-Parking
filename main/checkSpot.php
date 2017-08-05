@@ -86,11 +86,10 @@
 								?>
 								<?php
 
-								// Retrieve highest bid
-
-								$sql = mysqli_query($conn, "SELECT MAX(`price`) FROM users");
+								// Uncomment here if going to use
+								$sql = mysqli_query($conn, "SELECT MAX(`bidder_price`) FROM bids");
 								$bid_row = mysqli_fetch_array($sql);
-								$highestBid = $bid_row['price'];
+								$highestBid = $bid_row['bidder_price'];
 
 
 								?>
@@ -152,7 +151,7 @@
 
       <!-- <script type="text/javascript" src="jquery-1.3.2.js"> </script> -->
 
-       <script type="text/javascript">
+       <script>
        //ajax call to bids
        $(document).ready(function() {
           var interval;
@@ -160,7 +159,7 @@
             $.ajax({    //create an ajax request to load_page.php
               type: "GET",
               url: "checkSpot.php",
-              dataType: "html"
+              dataType: "html",
               success: function(response){
                   $("#highestPrice").html(response);
                   interval = setTimeout(submitBid, 1000);
@@ -172,6 +171,9 @@
 
           submitBid();
       });
+
+
+
       </script>
 			<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	</body>
