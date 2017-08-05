@@ -84,12 +84,23 @@
                 echo '<iframe src="'.$spoturl.'"
                   width="500" height="375" frameborder="0" style="border:0" allowfullscreen>';
 								?>
+								<?php
+
+								// Retrieve highest bid
+
+								$sql = mysqli_query($conn, "SELECT MAX(`price`) FROM users");
+								$bid_row = mysqli_fetch_array($sql);
+								$highestBid = $bid_row['price'];
+
+
+								?>
+
                 </iframe>
                 <div style="width:30%; float: right;">
                         <h2 style="padding-left: 20px; padding-bottom: 0px!important; color: #8c8c8c;">Bidding:</h2>
 												<h5 style="padding-left: 20px; font-size: 18px; font-family: Avenir; color: #8c8c8c;">Highest Bid: <br>goes here<?php echo $price;?></h5>
 												<p style="padding-left: 20px; font-size: 18px; font-family: Avenir; padding-bottom: 30px; color: #8c8c8c;">Time Left: 1 hr 23 min</p>
-												<input type="text" placeholder="Your bid" style="width: 70%; margin-left: 20px;" id="bidInput" onclick="addDollarSign()"/><br>
+												<input type="text" name="your_bid" placeholder="Your bid" style="width: 70%; margin-left: 20px;" id="bidInput" onclick="addDollarSign()"/><br>
 												<input type="submit" value="Bid" style="margin-left: 20px; margin-bottom: 20px;" onclick="submitBid()" />
                 </div>
 								<script>
@@ -149,7 +160,7 @@
             $.ajax({    //create an ajax request to load_page.php
               type: "GET",
               url: "checkSpot.php",
-              dataType: "html",   //expect html to be returned
+              dataType: "html"
               success: function(response){
                   $("#highestPrice").html(response);
                   interval = setTimeout(submitBid, 1000);
@@ -159,9 +170,8 @@
             });
           }
 
-            submitBid();
+          submitBid();
       });
-
       </script>
 			<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	</body>

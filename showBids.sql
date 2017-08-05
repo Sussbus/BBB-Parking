@@ -31,3 +31,7 @@ CREATE TABLE bids (
 );
 
 -- end create table
+
+-- highest price
+SELECT  MAX(`bidder_price`) from bids;
+-- end highest price
